@@ -6,3 +6,4 @@ have to be able to have an account
 send messages/recive messages
 Only be able to delete/edit post if you made the post 
 have filters for searching 
+refer to the suggest dev path to make sure your on the right path
