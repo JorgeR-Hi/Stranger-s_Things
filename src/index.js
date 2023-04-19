@@ -1,5 +1,5 @@
 import {createRoot} from "react-dom/client";
-import {App, Register, Post, Message} from "./componets";
+import {App} from "./componets";
 
 
 const root = createRoot(document.querySelector("#app"));

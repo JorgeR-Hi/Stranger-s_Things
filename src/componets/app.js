@@ -1,8 +1,13 @@
-import React from "react"
+import React from "react";
+
+import {Register} from "./"
 
 function App(){
+
     return(
-        <h1>App!!!</h1>
+        <div>
+        <Register/>
+        </div>
     )
 }
 
