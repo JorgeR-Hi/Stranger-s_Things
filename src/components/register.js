@@ -1,18 +1,26 @@
 import React, {useState} from "react";
 
+import { registerUser } from "../api";
 
 function Register(){
     const [username, setUsername]=useState("");
     const [password, setPassword]=useState("");
+   
     function handleSubmit(ev){
-        ev.preventDefualt();
-        
+        ev.preventDefault();
+        const user= {username, password};
+        try{
+        const results= registerUser(user)
+        console.log(results)
+        }catch(err){
+            console.error("We're having trouble registering your account", err)
+        }
     }
 
     
     return(
-        <div>
-           <form>
+        <div id="login">
+           <form onSubmit={handleSubmit}>
             <input 
             type="text"
             placeholder="Enter Username"
@@ -29,4 +37,4 @@ function Register(){
     )
 }
 
-export default Register
+export default Register;

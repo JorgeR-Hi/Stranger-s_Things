@@ -1,6 +1,6 @@
 import React from "react";
 
-import {Register} from "./"
+import Register from "./register"
 
 function App(){
 
