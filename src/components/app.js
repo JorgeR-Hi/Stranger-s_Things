@@ -1,33 +1,54 @@
 import React, {useState} from "react";
+import {Routes, Route} from "react-router-dom"
+import {
+    Register, 
+    Login, 
+    Posts, 
+    CreatePost
+} from "./index"
 
-import {Register, Login} from "./index"
- 
+import {fetchPosts} from "../api"
 function App(){
-    const [showRegister, setShowRegister]= useState(false)
-    const [showLogin, setShowLogin] = useState(false);
+    const[token, setToken]= useState("");
+    const[post, setPosts]= useState([])
 
-
-    const handleRegisterClick = (ev) =>{
-        ev.preventDefault();
-        setShowRegister(true);
-        
-    };
-    const handleLoginClick= (ev) =>{
-        ev.preventDefault();
-        setShowLogin(true);
+    function tokenCheck(){
+        if(window.localStorage.getItem("token")){
+            setToken(window.localStorage.getItem("token"))
+        } 
     }
+
+    async function getPosts(){
+        const results= await fetchPosts()
+        if(results.success){
+            setPosts(results.data.posts)
+        }
+    }
+
+    useEffect(()=>{
+        tokenCheck();
+    }, [])
+    useEffect(() => {
+        getPosts();
+    }, [token])
+
 
     return(
         <div>
-        <button onClick={handleRegisterClick}>Register</button>
-        <button onClick={handleLoginClick}>Login</button>
-        {showRegister ? (
-        <Register />
-      ) : showLogin ? (
-        <Login />
-      ) : (
-        <p>Please select an option</p>
-      )}
+        <Routes>
+            <Route
+            path="/"
+            element={<Posts posts={posts}/>}
+            />
+            <Route
+            path="/register"
+            element={<Login setToken={setToken}/>}
+            />
+            <Route
+            path="/create-post"
+            element={<CreatePost token={token} getPosts={getPosts}/>}
+            />
+        </Routes>
         </div>
     )
 }

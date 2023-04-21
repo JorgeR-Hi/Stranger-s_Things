@@ -2,19 +2,22 @@ import React, {useState} from "react";
 import { loginUser } from "../api";
 
 
-function Login(){
+function Login({setToken}){
     const[username, setUsername]=useState("")
     const[password, setPassword]=useState("")
     const[loginErr, setLoginErr]=useState("")
 
     async function handleSubmit(ev){
         ev.preventDefault();
-        try{
-            const result = await loginUser(username, password)
-            console.log(response);
-        }catch(err){
-            setLoginError(err.message)
+        const user= {username, password};
+        const results = await loginUser(user)
+        console.log(response);
+      
+        if(results.success){
+            setToken(results.data.token);
+            window.localStorage.getItem("token", results.data.token)
         }
+        
     }
 
     return(

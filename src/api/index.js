@@ -5,7 +5,7 @@ const BASE_URL =`https://strangers-things.herokuapp.com/api/${COHORT_NAME}`
 export const API_REGISTER=`${BASE_URL}/users/register`
 export const API_POST=`${BASE_URL}/post`
 //export const API_ME=`${BASE_URL}/user/me`
-//export const API_LOGIN=`${BASE_URL}/users/login`
+export const API_LOGIN=`${BASE_URL}/users/login`
 
 export const registerUser = async () => {
 try {
@@ -30,10 +30,12 @@ try {
     console.error(err);
   }
 }
+
+
 export const loginUser = async () => {
 
     try {
-      const response = await fetch(`${API_POST}`, {
+      const response = await fetch(`${API_LOGIN}`, {
         method: "POST",
         headers: {
           'Content-Type': 'application/json'
@@ -49,3 +51,38 @@ export const loginUser = async () => {
       console.error(err);
     }
   }
+
+  export const fetchPosts = async () => {
+    try {
+      const response = await fetch(`${API_POST}`);
+  
+      const result = await response.json();
+      // console.log(result);
+      return result;
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
+
+
+  export const makePost = async (post, token) => {
+  
+    try {
+      const response = await fetch(`${API_POST}`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify({
+          post
+        }),
+      });
+      const result = await response.json();
+      // console.log(result);
+      return result;
+    } catch (err) {
+      console.error(err);
+    }
+  };

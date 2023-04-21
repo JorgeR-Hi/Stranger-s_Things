@@ -2,21 +2,26 @@ import React, {useState} from "react";
 
 import { registerUser } from "../api";
 
-function Register(){
+function Register({setToken}){
     const [username, setUsername]=useState("");
     const [password, setPassword]=useState("");
    
-    function handleSubmit(ev){
+    async function handleSubmit(ev){
         ev.preventDefault();
         const user= {username, password};
-        try{
-        const results= registerUser(user)
+ 
+        const results= await registerUser(user)
+        const token= results.token;
+    
         console.log(results)
-        }catch(err){
-            console.error("We're having trouble registering your account", err)
+       
+        if(results.success){
+            setToken(results.data.token);
+            window.localStorage.setItem("token", results.data.token)
+            
         }
     }
-
+    
     
     return(
         <div id="register">

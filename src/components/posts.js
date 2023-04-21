@@ -1,11 +1,18 @@
-import React, {useEffect, useState} from "react"
-
-import {} from "../api"
+import React from "react"
 
 
-
-function Post(){
-
+function Posts({posts}){
+ return(
+    <>
+    {
+        posts && posts.map((posts)=>{
+            return(
+                <p key={posts.id}>{posts.title}</p>
+            )
+        })
+    }
+    </>
+ )
 }
 
-export default Post;
+export default Posts;
