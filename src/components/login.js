@@ -1,25 +1,24 @@
 import React, {useState} from "react";
+import { loginUser } from "../api";
 
-import { registerUser } from "../api";
 
-function Register(){
-    const [username, setUsername]=useState("");
-    const [password, setPassword]=useState("");
-   
-    function handleSubmit(ev){
+function Login(){
+    const[username, setUsername]=useState("")
+    const[password, setPassword]=useState("")
+    const[loginErr, setLoginErr]=useState("")
+
+    async function handleSubmit(ev){
         ev.preventDefault();
-        const user= {username, password};
         try{
-        const results= registerUser(user)
-        console.log(results)
+            const result = await loginUser(username, password)
+            console.log(response);
         }catch(err){
-            console.error("We're having trouble registering your account", err)
+            setLoginError(err.message)
         }
     }
 
-    
     return(
-        <div id="register">
+        <div id="login">
            <form onSubmit={handleSubmit}>
             <input 
             type="text"
@@ -31,10 +30,12 @@ function Register(){
             placeholder="Enter Password"
             onChange={(ev)=> setPassword(ev.target.value)}
             />
-            <button type="submit">Create Account</button>
+            {loginErr && <p>{loginErr}</p>}
+            <button type="submit">Login</button>
            </form>
         </div>
     )
 }
 
-export default Register;
+
+export default Login;
