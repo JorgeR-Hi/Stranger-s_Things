@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 import {Routes, Route} from "react-router-dom"
 import {
     Register, 
@@ -10,7 +10,7 @@ import {
 import {fetchPosts} from "../api"
 function App(){
     const[token, setToken]= useState("");
-    const[post, setPosts]= useState([])
+    const[posts, setPosts]= useState([])
 
     function tokenCheck(){
         if(window.localStorage.getItem("token")){
@@ -33,24 +33,29 @@ function App(){
     }, [token])
 
 
-    return(
+    return (
         <div>
-        <Routes>
-            <Route
-            path="/"
-            element={<Posts posts={posts}/>}
+          <Routes>
+            <Route 
+              path='/' 
+              element={<Posts posts={posts} />} 
+            />
+            <Route 
+              path='/register' 
+              element={<Register setToken={setToken} />} 
             />
             <Route
-            path="/register"
-            element={<Login setToken={setToken}/>}
+              path='/login'
+              element={<Login setToken={setToken} />}
             />
             <Route
-            path="/create-post"
-            element={<CreatePost token={token} getPosts={getPosts}/>}
+              path='/create-post'
+              element={<CreatePost token={token} getPosts={getPosts} />}
             />
-        </Routes>
+          </Routes>
         </div>
-    )
+      );
 }
+
 
 export default App;

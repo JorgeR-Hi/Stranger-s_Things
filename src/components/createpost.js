@@ -2,7 +2,7 @@ import React, {useState} from "react";
 import {makePost} from "../api"
 import {Link} from "react-router-dom"
 
-function createPost(){
+function CreatePost(){
     const [title, setTitle]=useState("");
     const [description, setDescription]= useState("")
     const [price, setPrice]=useState("");
@@ -45,4 +45,4 @@ function createPost(){
     )
 }
 
-export default createPost;
+export default CreatePost;
