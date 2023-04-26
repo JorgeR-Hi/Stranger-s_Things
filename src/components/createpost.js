@@ -40,7 +40,7 @@ function CreatePost(){
             onChange={(ev) => setPrice(ev.target.value)}
             />
             <button type="submit">Create Post</button>
-            <Link to="/"></Link>
+           <Link to="/"></Link> 
         </form>
     )
 }

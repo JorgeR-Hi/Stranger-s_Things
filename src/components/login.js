@@ -2,20 +2,21 @@ import React, {useState} from "react";
 import { loginUser } from "../api";
 
 
-function Login({setToken}){
+function Login({setToken, navigate}){
     const[username, setUsername]=useState("")
     const[password, setPassword]=useState("")
-    const[loginErr, setLoginErr]=useState("")
+   
 
     async function handleSubmit(ev){
         ev.preventDefault();
         const user= {username, password};
         const results = await loginUser(user)
-        console.log(response);
+        console.log(results);
       
         if(results.success){
             setToken(results.data.token);
             window.localStorage.getItem("token", results.data.token)
+            navigate('/');
         }
         
     }
@@ -33,7 +34,7 @@ function Login({setToken}){
             placeholder="Enter Password"
             onChange={(ev)=> setPassword(ev.target.value)}
             />
-            {loginErr && <p>{loginErr}</p>}
+           
             <button type="submit">Login</button>
            </form>
         </div>

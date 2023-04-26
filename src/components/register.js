@@ -11,7 +11,7 @@ function Register({setToken}){
         const user= {username, password};
  
         const results= await registerUser(user)
-        const token= results.token;
+        const token = results.token;
     
         console.log(results)
        
@@ -20,9 +20,10 @@ function Register({setToken}){
             window.localStorage.setItem("token", results.data.token)
             
         }
+         
     }
     
-    
+   
     return(
         <div id="register">
            <form onSubmit={handleSubmit}>

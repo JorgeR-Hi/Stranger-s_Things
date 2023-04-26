@@ -2,15 +2,13 @@ const COHORT_NAME ="2301-ftb-et-web-pt";
 
 const BASE_URL =`https://strangers-things.herokuapp.com/api/${COHORT_NAME}`
 
-export const API_REGISTER=`${BASE_URL}/users/register`
-export const API_POST=`${BASE_URL}/post`
-//export const API_ME=`${BASE_URL}/user/me`
-export const API_LOGIN=`${BASE_URL}/users/login`
 
-export const registerUser = async () => {
+
+
+export const registerUser = async (user) => {
 try {
     const response = await fetch(
-      `${API_REGISTER}`, {
+      `${BASE_URL}/users/register`, {
       method: "POST",
       headers: {
         'Content-Type': 'application/json'
@@ -32,10 +30,10 @@ try {
 }
 
 
-export const loginUser = async () => {
+export const loginUser = async (user) => {
 
     try {
-      const response = await fetch(`${API_LOGIN}`, {
+      const response = await fetch(`${BASE_URL}/user/login`, {
         method: "POST",
         headers: {
           'Content-Type': 'application/json'
@@ -51,10 +49,30 @@ export const loginUser = async () => {
       console.error(err);
     }
   }
-
-  export const fetchPosts = async () => {
+  export const myData = async (token) => {
     try {
-      const response = await fetch(`${API_POST}`);
+      const response = await fetch(`${BASE_URL}/users/me`, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      const result = await response.json();
+      // console.log(result);
+      return result;
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
+  export const fetchPosts = async (token) => {
+    try {
+      const response = await fetch(`${BASE_URL}/posts`, {
+        headers: {
+          'Content-Type': "application/json",
+          Authorization: `Bearer ${token}`
+        }
+      });
   
       const result = await response.json();
       // console.log(result);
@@ -69,7 +87,7 @@ export const loginUser = async () => {
   export const makePost = async (post, token) => {
   
     try {
-      const response = await fetch(`${API_POST}`, {
+      const response = await fetch(`${BASE_URL}/posts`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

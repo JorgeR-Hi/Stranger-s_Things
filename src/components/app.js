@@ -4,10 +4,13 @@ import {
     Register, 
     Login, 
     Posts, 
-    CreatePost
+    CreatePost,
+    NavBar
 } from "./index"
 
 import {fetchPosts} from "../api"
+
+
 function App(){
     const[token, setToken]= useState("");
     const[posts, setPosts]= useState([])
@@ -35,6 +38,10 @@ function App(){
 
     return (
         <div>
+          <div id="stranger-things-title">
+          <h1 id="title">Stranger's Things</h1>
+          <NavBar/>
+          </div>
           <Routes>
             <Route 
               path='/' 

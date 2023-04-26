@@ -1,18 +1,34 @@
-import React from "react"
+import React, { Fragment } from "react"
 
 
-function Posts({posts}){
- return(
-    <>
-    {
-        posts && posts.map((posts)=>{
-            return(
-                <p key={posts.id}>{posts.title}</p>
+function Posts({ posts }) {
+   
+    
+    return (
+      <div>
+        {
+          posts && posts.map((post) => {
+            return (
+              <Fragment key={post._id}>
+                {
+                  post.isAuthor ? (
+                    <div id="posts">
+                      <p >{post.title}</p>
+                      <button>Delete</button>
+                    </div>
+                  ) : (
+                    <div id="posts">
+                      <p >{post.title}</p>
+                      <button>Message</button>
+                    </div>
+                  )
+                }
+              </Fragment>
             )
-        })
-    }
-    </>
- )
-}
-
-export default Posts;
+          })
+        }
+      </div>
+    );
+  }
+  
+  export default Posts;

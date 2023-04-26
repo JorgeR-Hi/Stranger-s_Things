@@ -1,0 +1,27 @@
+*{
+    
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+}
+#stranger-things-title{
+    padding:auto;
+    justify-content: center;
+   
+    background-color: rgba(71, 162, 242, 0.499)
+
+}
+#title{
+    align-items:center;
+}
+
+#nav-button{
+    background-color: rgba(71, 162, 242, 0.499);
+    flex-direction:row;
+    margin:auto;
+}
+#posts{
+   border: 1px solid black; 
+   padding: 50px;
+   background-color: rgba(78, 173, 241, 0.577);
+}
