@@ -8,7 +8,7 @@ import {
     NavBar
 } from "./index"
 
-import {fetchPosts} from "../api"
+import {fetchPosts, myData} from "../api"
 
 
 function App(){

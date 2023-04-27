@@ -2,7 +2,7 @@ import React, {useState} from "react";
 import {makePost} from "../api"
 import {Link} from "react-router-dom"
 
-function CreatePost({token}){
+function CreatePost({token, getPosts}){
     const [title, setTitle]=useState("");
     const [description, setDescription]= useState("")
     const [price, setPrice]=useState("");
@@ -40,7 +40,7 @@ function CreatePost({token}){
             onChange={(ev) => setPrice(ev.target.value)}
             />
             <button type="submit">Create Post</button>
-           <Link to="/"></Link> 
+           <Link to="/">Go Home</Link> 
         </form>
     )
 }
