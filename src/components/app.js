@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from "react";
-import {Routes, Route} from "react-router-dom"
+import {Routes, Route, useNavigate} from "react-router-dom"
 import {
     Register, 
     Login, 
@@ -14,6 +14,10 @@ import {fetchPosts} from "../api"
 function App(){
     const[token, setToken]= useState("");
     const[posts, setPosts]= useState([])
+    const[user, setUser]=useState({});
+    const[isLoggedIn, setIsLoggedIn]= useState(false);
+
+    const navigate= useNavigate();
 
     function tokenCheck(){
         if(window.localStorage.getItem("token")){
@@ -28,11 +32,22 @@ function App(){
         }
     }
 
+    async function getMyData(){
+      const results= await myData(token)
+      if(results.success){
+        setUser(results.data)
+      }
+    }
+
     useEffect(()=>{
         tokenCheck();
     }, [])
     useEffect(() => {
         getPosts();
+        if(token){
+          getMyData();
+          setIsLoggedIn(true);
+        }
     }, [token])
 
 
@@ -40,7 +55,11 @@ function App(){
         <div>
           <div id="stranger-things-title">
           <h1 id="title">Stranger's Things</h1>
-          <NavBar/>
+          <NavBar
+            setToken={setToken}
+            setIsLoggedIn={setIsLoggedIn}
+            isLoggedIn={isLoggedIn}
+          />
           </div>
           <Routes>
             <Route 
@@ -49,11 +68,11 @@ function App(){
             />
             <Route 
               path='/register' 
-              element={<Register setToken={setToken} />} 
+              element={<Register setToken={setToken} navigate={navigate} />} 
             />
             <Route
               path='/login'
-              element={<Login setToken={setToken} />}
+              element={<Login setToken={setToken} navigate={navigate}/>}
             />
             <Route
               path='/create-post'

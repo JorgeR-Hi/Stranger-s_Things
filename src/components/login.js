@@ -1,11 +1,11 @@
-import React, {useState} from "react";
+import React, {useState, Link} from "react";
 import { loginUser } from "../api";
 
 
 function Login({setToken, navigate}){
-    const[username, setUsername]=useState("")
-    const[password, setPassword]=useState("")
-   
+    const[username, setUsername]=useState("");
+    const[password, setPassword]=useState("");
+    //const[loginErr, setLoginErr]=useState("");
 
     async function handleSubmit(ev){
         ev.preventDefault();
@@ -16,7 +16,7 @@ function Login({setToken, navigate}){
         if(results.success){
             setToken(results.data.token);
             window.localStorage.getItem("token", results.data.token)
-            navigate('/');
+            navigate("/")
         }
         
     }

@@ -2,7 +2,7 @@ import React, {useState} from "react";
 import {makePost} from "../api"
 import {Link} from "react-router-dom"
 
-function CreatePost(){
+function CreatePost({token}){
     const [title, setTitle]=useState("");
     const [description, setDescription]= useState("")
     const [price, setPrice]=useState("");
