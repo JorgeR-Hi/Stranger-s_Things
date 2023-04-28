@@ -25,7 +25,7 @@ function NavBar({setToken, setIsLoggedIn, isLoggedIn}){
         <button id="nav-button">
             <Link to="/create-post">Create a Post</Link>
         </button>
-        <button onClick={logout}>Log Out</button>
+        <button id="nav-button" onClick={logout}>Log Out</button>
         </>
         ) : (
             <>

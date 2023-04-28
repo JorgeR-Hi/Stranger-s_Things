@@ -36,7 +36,7 @@ function UpdatePost({posts, token, getPosts}){
               getPosts();
               navigate('/');
             } else {
-              setErrorMessage("There seems to be an errror: ",results.error.message)
+              setErrorMessage("There seems to be an error updating your post: ",results.error.message)
             }
           }
           

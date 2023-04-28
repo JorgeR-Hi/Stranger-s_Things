@@ -49,8 +49,8 @@ export const loginUser = async (user) => {
         user
       })
     });
-    console.log(user)
-    console.log(response);
+    //console.log(user)
+    //console.log(response);
     const result = await response.json();
     if (result.success) {
       console.log("Login successful!");
@@ -74,12 +74,14 @@ export const loginUser = async (user) => {
       });
       const result = await response.json();
       // console.log(result);
+      console.log(token)
       return result;
     } catch (err) {
       console.error(err);
     }
   };
-//fetching the all of the post for the home page 
+
+//fetching the post  
 export const fetchPosts = async (token) => {
   try {
     const response = await fetch(`${BASE_URL}/posts`, {
@@ -91,6 +93,7 @@ export const fetchPosts = async (token) => {
 
     const result = await response.json();
     // console.log(result);
+    console.log(token)
     return result;
   } catch (err) {
     console.error(err);
@@ -99,7 +102,6 @@ export const fetchPosts = async (token) => {
 
 
 
-//making a post
   export const makePost = async (post, token) => {
   
     try {
@@ -121,32 +123,8 @@ export const fetchPosts = async (token) => {
       console.error(err);
     }
   };
-//messaging
-  export const postMessage = async (message, token) => {
-    try {
-      const response = await fetch(`${BASE_URL}/posts/5e8929ddd439160017553e06/messages`, {
-        method: "POST",
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${token}`
-        },
-        body: JSON.stringify({
-          message
-        })
-      });
-      //console.log(message)
-      //console.log(response)
-      const result = await response.json();
-      console.log(result);
-      return result
-    } catch (err) {
-      console.error(err);
-    }
-  };
 
 
-
-//editing and deleting a post 
   export const deletePost = async (postId, token) => {
     try {
       const response = await fetch(`${BASE_URL}/posts/${postId}`, {
@@ -164,7 +142,8 @@ export const fetchPosts = async (token) => {
     }
   }
 
-  export const updatePost = async (postId, token, updatedPost) => {
+
+export const updatePost = async (postId, token, updatedPost) => {
     try {
       const response = await fetch(`${BASE_URL}/posts/${postId}`, {
         method: "PATCH",
@@ -190,4 +169,33 @@ export const fetchPosts = async (token) => {
       console.error(err);
     }
   }
+  
+
+//messaging
+  export const postMessage = async (message, token) => {
+    try {
+      const response = await fetch(`${BASE_URL}/posts/5e8929ddd439160017553e06/messages`, {
+        method: "POST",
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`
+        },
+        body: JSON.stringify({
+          message
+        })
+      });
+      //console.log(message)
+      //console.log(response)
+      const result = await response.json();
+      console.log(result);
+      return result
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
+
+
+
+
   

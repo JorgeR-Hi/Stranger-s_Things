@@ -18,7 +18,7 @@ function App(){
     const[user, setUser]=useState({});
     const[isLoggedIn, setIsLoggedIn]= useState(false);
 
-    const navigate= useNavigate();
+    const navigate = useNavigate();
 
     function tokenCheck(){
         if(window.localStorage.getItem("token")){
@@ -27,7 +27,7 @@ function App(){
     }
 
     async function getPosts(){
-        const results= await fetchPosts()
+        const results= await fetchPosts(token)
         if(results.success){
             setPosts(results.data.posts)
         }
@@ -65,19 +65,31 @@ function App(){
           <Routes>
             <Route 
               path='/' 
-              element={<Posts posts={posts} />} 
+              element={<Posts 
+                posts={posts} 
+                token={token}
+                getPosts={getPosts}
+                
+               />} 
+                
             />
             <Route 
               path='/register' 
-              element={<Register setToken={setToken} navigate={navigate} />} 
+              element={<Register 
+                setToken={setToken} 
+                navigate={navigate} />} 
             />
             <Route
               path='/login'
-              element={<Login setToken={setToken} navigate={navigate}/>}
+              element={<Login 
+                setToken={setToken} 
+                navigate={navigate}/>}
             />
             <Route
               path='/create-post'
-              element={<CreatePost token={token} getPosts={getPosts} />}
+              element={<CreatePost 
+                token={token} 
+                getPosts={getPosts} />}
             />
             <Route
             path="/update-post/:postId"
@@ -85,6 +97,7 @@ function App(){
             posts={posts}
             token={token}
             getPosts={getPosts}
+
             />}/>
           </Routes>
         </div>

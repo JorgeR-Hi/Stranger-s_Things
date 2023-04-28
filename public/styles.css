@@ -1,8 +1,9 @@
 *{
     
     display:flex;
+    
     flex-direction: column;
-    justify-content: center;
+    justify-content: left;
 }
 #stranger-things-title{
     padding:auto;
@@ -11,9 +12,8 @@
     background-color: rgba(71, 162, 242, 0.499)
 
 }
-#list-of-post{
-    flex-direction: column-reverse;
-}
+
+
 #title{
     align-items:center;
 }
@@ -24,18 +24,18 @@
     margin:auto;
 }
 .posts{
+    display:grid;
    border: 1px solid black; 
-   padding: 50px;
+   padding: 2px;
    background-color: rgba(78, 173, 241, 0.577);
-   flex-direction: row;
-   justify-content: left;
-
+   flex-direction: column;
+   
 }
 #edit-button{
     margin: auto;
-
 }
 #mess-button{
+    align-items: right;
     margin:auto;
 }
 #del-button{
