@@ -5,7 +5,8 @@ import {
     Login, 
     Posts, 
     CreatePost,
-    NavBar
+    NavBar,
+    UpdatePost
 } from "./index"
 
 import {fetchPosts, myData} from "../api"
@@ -78,6 +79,13 @@ function App(){
               path='/create-post'
               element={<CreatePost token={token} getPosts={getPosts} />}
             />
+            <Route
+            path="/update-post/:postId"
+            element={<UpdatePost
+            posts={posts}
+            token={token}
+            getPosts={getPosts}
+            />}/>
           </Routes>
         </div>
       );
