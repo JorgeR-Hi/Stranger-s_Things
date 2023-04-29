@@ -1,11 +1,12 @@
 import React, { Fragment } from "react"
 import {Link} from "react-router-dom"
-import { deletePost } from "../api";
+import { deletePost} from "../api";
+import Message from "./message"
 
 
-function Posts({posts, token, getPosts}) {
-   
+function Posts({posts, token, getPosts, isLoggedIn}) {
   
+ 
   async function handleDelete( postId, token, getPosts){
     try{
       const result = await deletePost(postId, token);
@@ -41,6 +42,7 @@ function Posts({posts, token, getPosts}) {
                       <Link to={`/update-post/${post._id}`}>
                         <button id="edit-button">Edit Post</button>
                       </Link>
+                     
                     
                   </div>
                   </div>
@@ -50,9 +52,13 @@ function Posts({posts, token, getPosts}) {
                       <p id="post-title">Title: {post.title}</p>
                       <p id="post-description">Description: {post.description}</p>
                       <p id="post-price">Price: {post.price}</p>
-                      <button id="mess-button">Message</button>
+                      {isLoggedIn ? (
                       
-                    </div>
+                        <Message posts={posts }postId={post._id} token={token} getPosts={getPosts} />
+                     ) : (
+                        <p id="please-login">Please login to message</p>
+                      )}
+                      </div>
                     </div>
                 )
               }

@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 import {makePost} from "../api"
-import {Link, useNavigate} from "react-router-dom"
+import {useNavigate} from "react-router-dom"
 
 function CreatePost({token, getPosts}){
     const [title, setTitle]=useState("");

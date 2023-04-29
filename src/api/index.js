@@ -172,9 +172,9 @@ export const updatePost = async (postId, token, updatedPost) => {
   
 
 //messaging
-  export const postMessage = async (message, token) => {
+  export const postMessage = async ( postId, message, token) => {
     try {
-      const response = await fetch(`${BASE_URL}/posts/5e8929ddd439160017553e06/messages`, {
+      const response = await fetch(`${BASE_URL}/posts/${postId}/messages`, {
         method: "POST",
         headers: {
           'Content-Type': 'application/json',

@@ -6,7 +6,8 @@ import {
     Posts, 
     CreatePost,
     NavBar,
-    UpdatePost
+    UpdatePost,
+    Message
 } from "./index"
 
 import {fetchPosts, myData} from "../api"
@@ -51,7 +52,7 @@ function App(){
         }
     }, [token])
 
-
+console.log(posts)
     return (
         <div>
           <div id="stranger-things-title">
@@ -69,6 +70,7 @@ function App(){
                 posts={posts} 
                 token={token}
                 getPosts={getPosts}
+                isLoggedIn={isLoggedIn}
                 
                />} 
                 
@@ -97,8 +99,17 @@ function App(){
             posts={posts}
             token={token}
             getPosts={getPosts}
-
-            />}/>
+            />
+            }/>
+            <Route 
+            path="/message/:postId"
+            element={<Message
+            posts={posts}
+            token={token}
+            getPosts={getPosts}
+            />}
+            
+            />
           </Routes>
         </div>
       );
