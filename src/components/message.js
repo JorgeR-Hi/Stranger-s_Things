@@ -7,7 +7,7 @@ import { postMessage } from "../api"
 function Message({posts, token}){
     const navigate= useNavigate();
     const {postId} = useParams();
-    console.log(posts)
+    //console.log(posts)
     const [post]= posts.filter((post) => post._id === postId)
     const [message, setMessage]= useState("")
 
@@ -30,6 +30,7 @@ function Message({posts, token}){
 
 
     return(
+        
         <div>
             <h2>Message Post</h2>
             
@@ -41,9 +42,12 @@ function Message({posts, token}){
                 onChange={(ev) => setMessage(ev.target.value)}
                 />
                 {!token && <p id="please-login">Please Login to send messages</p>}
-                <button type="sumbit" disabled={!token}>Send Message</button>
+                <button type="submit" disabled={!token}>Send Message</button>
             </form>
+            {//console.log(message)
+            }
         </div>
+        
     )
 }
 

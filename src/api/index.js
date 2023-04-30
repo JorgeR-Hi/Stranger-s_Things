@@ -93,7 +93,7 @@ export const fetchPosts = async (token) => {
 
     const result = await response.json();
     // console.log(result);
-    console.log(token)
+    //console.log(token)
     return result;
   } catch (err) {
     console.error(err);
@@ -184,6 +184,7 @@ export const updatePost = async (postId, token, updatedPost) => {
           message
         })
       });
+      
       //console.log(message)
       //console.log(response)
       const result = await response.json();

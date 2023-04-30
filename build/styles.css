@@ -1,0 +1,44 @@
+*{
+    display:flex;
+    flex-direction: column;
+    justify-content: left;
+}
+#stranger-things-title{
+    padding:auto;
+    justify-content: center;
+    border:1px solid black;
+    background-color: rgba(71, 162, 242, 0.499)
+
+}
+
+
+#title{
+    align-items:center;
+}
+
+#nav-button{
+    background-color: rgba(71, 162, 242, 0.499);
+    flex-direction:row;
+    margin:auto;
+}
+.posts{
+    display:grid;
+   border: 1px solid black; 
+   padding: 2px;
+   background-color: rgba(78, 173, 241, 0.577);
+   flex-direction: column;
+   
+}
+#edit-button{
+    margin: auto;
+}
+#mess-button{
+    align-items: right;
+    margin:auto;
+}
+#del-button{
+    margin:auto;
+}
+#post-description{
+    flex-direction: column;
+}

@@ -49,10 +49,11 @@ function App(){
         if(token){
           getMyData();
           setIsLoggedIn(true);
+          
         }
     }, [token])
 
-console.log(posts)
+//console.log(posts)
     return (
         <div>
           <div id="stranger-things-title">

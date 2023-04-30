@@ -54,7 +54,7 @@ function Posts({posts, token, getPosts, isLoggedIn}) {
                       <p id="post-price">Price: {post.price}</p>
                       {isLoggedIn ? (
                       
-                        <Message posts={posts }postId={post._id} token={token} getPosts={getPosts} />
+                        <Message posts={posts } postId={post._id} token={token} getPosts={getPosts} />
                      ) : (
                         <p id="please-login">Please login to message</p>
                       )}
